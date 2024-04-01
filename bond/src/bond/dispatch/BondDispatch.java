@@ -28,7 +28,9 @@ public class BondDispatch extends HttpServlet {
 		FileInputStream fin = null;
 		try {
 			String path = this.getClass().getResource("/bond").getPath();
-			path = path + "/resources/bond.properties";
+			path = path + "resources/bond.properties";
+			
+//			System.out.println("################### " + path);
 			fin = new FileInputStream(path);
 			prop.load(fin);
 		} catch(Exception e) {
@@ -65,7 +67,6 @@ public class BondDispatch extends HttpServlet {
 		String domain = req.getContextPath();
 		String sreq = full.substring(domain.length());
 		
-//		System.out.println("################## " + sreq);
 		
 		resp.setCharacterEncoding("UTF-8");
 		req.setAttribute("METHOD", "FORWARD");

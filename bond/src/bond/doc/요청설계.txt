@@ -40,6 +40,27 @@
 컨트롤러	:	bond.controller.member.Join
 응답문서	:	/WEB-INF/views/member/join.jsp
 
+# 회원가입 처리 요청
+요청내용	: 	/member/joinProc.bnd
+파라미터	:	id, pw, name, mail, tel, gen, avt
+컨트롤러	:	bond.controller.member.JoinProc
+응답문서	:	
+				redirect ]
+					성공 :	/main.bnd 
+					실패 :	/member/join.bnd
+----------------------------------------------------------------------------------------------------------------------
+# 방명록 관련 요청 설계
+
+# 방명록 리스트보기 요청
+요청내용	: 	/gboard/gboard.bnd
+파라미터	:	없음
+컨트롤러	:	bond.controller.gboard.Gboard
+응답문서	:	/WEB-INF/views/gboard/gboard.jsp
+
+
+
+
+
 ----------------------------------------------------------------------------------------------------------------------
 요청내용	: 	
 파라미터	:	

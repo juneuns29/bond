@@ -14,7 +14,7 @@ public class IdCheck implements BondInter {
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 할일
 		// 응답방식 셋팅
-		req.setAttribute("isRedirect", null);
+		req.setAttribute("METHOD","AJAX");
 		/*
 			isRedirect
 				true : 리다이렉트

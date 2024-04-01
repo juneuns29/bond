@@ -15,7 +15,7 @@ public class JoinProc implements BondInter {
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 할일
 		// 응답방식 설정
-		req.setAttribute("isRedirect", true);
+		req.setAttribute("METHOS", "REDIRECT");
 		// 뷰
 		String view = "/main.bnd";
 		
