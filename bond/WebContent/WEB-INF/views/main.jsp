@@ -37,6 +37,10 @@
 				return;
 			}
 		});
+		
+		$('#gboard').click(function(){
+			$(location).attr('href', '/gboard/gboard.bnd');
+		});
 	});
 </script>
 </head>
@@ -55,8 +59,9 @@
 
 		<div class="w3-col mgt10">
 <!-- 로그인에 성공하면 session에 SID라는 속성으로 아이디를 기억시켜 놓을 것이므로 -->
+			<div class="w3-btn w3-small w3-pink w3-left" id="gboard">방명록</div>
 <c:if test="${not empty SID}">
-			<div class="w3-btn w3-small w3-orange w3-left" id="logout">로그아웃</div>
+			<div class="w3-btn w3-small w3-orange w3-right" id="logout">로그아웃</div>
 </c:if>
 <c:if test="${empty SID}">
 			<div class="w3-btn w3-small w3-blue w3-right" id="join">회원가입</div>

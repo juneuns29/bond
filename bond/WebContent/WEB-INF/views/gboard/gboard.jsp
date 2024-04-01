@@ -9,7 +9,12 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/user.css">
 <script type="text/javascript" src="/resources/js/jquery-3.7.1.min.js"></script>
 <style type="text/css">
-
+	p {
+		margin: 0px!important;
+	}
+	hr {
+		margin: 3px!important;
+	}
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -56,10 +61,41 @@
 		<div class="w3-col w3-margin-top">
 <c:forEach var="DATA" items="${LIST}">
 			<div class="w3-col w3-padding w3-card-4 w3-margin-bottom">
-				<h3>${DATA.gno} | ${DATA.id} | ${DATA.sdate } | ${DATA.body}</h3>
+				<div class="w3-col" 
+					style="width: 110px; height: 100px; padding-right: 10px; border-right: 1px solid lightgray;">
+					<img src="/resources/image/avatar/${DATA.sname}" class="imgBox w3-left w3-border">
+				</div>
+				<div class="w3-rest" style="padding-left: 10px;">
+					<div class="w3-col w3-border-bottom" style="padding-bottom: 3px;">
+						<p class="w3-half w3-left-align pdl10"><strong>작성자 : ${DATA.id}</strong></p>
+						<p class="w3-half w3-right-align">${DATA.sdate}</p>
+					</div>
+					<!-- <hr class="w3-col"> -->
+					<div class="w3-col w3-padding">
+						<pre><small>${DATA.body}</small></pre>
+					</div>
+				</div>
 			</div>
 </c:forEach>
 		</div>
 	</div>
+	
+	<div id="id01" class="w3-col w3-modal1">
+		<div class="w3-modal-content mxw600">
+			<header class="w3-container w3-blue"> 
+				<span onclick="document.getElementById('id01').style.display='none'" 
+				class="w3-btn w3-display-topright">&times;</span>
+				<h2>Modal Header</h2>
+			</header>
+			<div class="w3-container">
+				<p>Some text..</p>
+				<p>Some text..</p>
+			</div>
+			<footer class="w3-container">
+				<p>Modal Footer</p>
+			</footer>
+		</div>
+	</div>
+	
 </body>
 </html>
