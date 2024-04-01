@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<c:redirect url="/main.bond" />
+<c:redirect url="/main.bnd" />
 <title></title>
 </head>
 <body>

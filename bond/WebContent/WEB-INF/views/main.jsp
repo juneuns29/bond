@@ -17,21 +17,21 @@
 		$('#login').click(function(){
 			var sid = '${SID}';
 			if(!sid || sid == 'null'){
-				$(location).attr('href', '/member/login.candy');
+				$(location).attr('href', '/member/login.bnd');
 			} else {
 				alert('이미 로그인 했습니다.');
 			}
 		});
 		
 		$('#logout').click(function(){
-			$(location).attr('href', '/member/logoutProc.candy');
+			$(location).attr('href', '/member/logoutProc.bnd');
 		});
 		
 		$('#join').click(function(){
 			// 로그인 여부 검사
 			var sid = '${SID}';
 			if(!sid || sid == 'null'){
-				$(location).attr('href', '/member/join.candy');
+				$(location).attr('href', '/member/join.bnd');
 			//	location.href = '/member/join.jsp';
 			} else {
 				return;
@@ -42,7 +42,16 @@
 </head>
 <body>
 	<div class="w3-content mxw650 w3-center">
-		<h1 class="w3-deep-purple w3-padding w3-card-4">Candy 메인</h1>
+		<h1 class="w3-deep-purple w3-padding w3-card-4"> 
+<c:if test="${not empty SID}">
+			${SID}
+</c:if>
+<c:if test="${empty SID}">
+			Bond
+</c:if>
+			메인
+		
+		</h1>
 
 		<div class="w3-col mgt10">
 <!-- 로그인에 성공하면 session에 SID라는 속성으로 아이디를 기억시켜 놓을 것이므로 -->
