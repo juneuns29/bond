@@ -23,6 +23,13 @@ public class Gboard implements BondInter {
 		// 세션 검사
 		String sid = (String) req.getSession().getAttribute("SID");
 		
+		// 파라미터 꺼내고
+		String msg = req.getParameter("msg");
+		if(msg != null) {
+			// msg 라는 파라미터가 존재하는 경우
+			req.setAttribute("MSG", msg);
+		}
+		
 		// 데이터베이스 사용준비
 		GboardDao gDao = new GboardDao();
 		if(sid != null) {

@@ -14,7 +14,7 @@ import bond.db.*;
  * @since	2024.04.01
  * @version	v.1.0
  * 			2024.04.01	- 	클래스 제작
- * 							방명록 리스트 조회 추가 	[ 담당자: 전은석 ]
+ * 							방명록 리스트 조회, 글등록 추가 	[ 담당자: 전은석 ]
  *
  */
 public class GboardDao {
@@ -111,6 +111,35 @@ public class GboardDao {
 			db.close(con);
 		}
 		// 데이터 반환해주고
+		return cnt;
+	}
+	
+	/**
+	 * 방명록 글등록 데이터베이스 작업 전담 처리함수
+	 */
+	public int addGboard(String id, String body) {
+		// 반환값 변수
+		int cnt = 0;
+		// 할일
+		// 커넥션
+		con = db.getCon();
+		// 질의명령
+		sql = gSQL.getSQL(gSQL.ADD_GBOARD);
+		// 명령전달도구
+		pstmt = db.getPstmt(sql, con);
+		try {
+			// 질의명령 완성하고
+			pstmt.setString(1, id);
+			pstmt.setString(2, body);
+			// 보내고 결과받고
+			cnt = pstmt.executeUpdate(); // 추가된 행 수 반환
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			db.close(pstmt);
+			db.close(con);
+		}
+		// 결과 반환하고
 		return cnt;
 	}
 }

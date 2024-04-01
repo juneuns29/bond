@@ -138,12 +138,25 @@
 <c:if test="${not empty MSG}">
 	<div id="msg" class="w3-modal">
 		<div class="w3-modal-content mxw550" >
-			<header class="w3-container w3-blue"> 
+	<c:if test="${MSG eq 'OK'}">
+			<header class="w3-container w3-blue">
+	</c:if>
+	<c:if test="${MSG ne 'OK'}">
+			<header class="w3-container w3-red">
+	</c:if>
 				<span class="w3-btn w3-display-topright" id="mclose">&times;</span>
 				<h2>Bond 방명록 등록 결과</h2>
 			</header>
 			<div class="w3-container w3-padding">
-				<h3 class="w3-center">${MSG}</h3>
+				<h3 class="w3-center">
+<c:if test="${MSG eq 'OK'}">
+					방명록 등록에 성공했습니다.
+</c:if>
+<c:if test="${MSG ne 'OK'}">
+					방명록 등록에 실패했습니다.
+</c:if>
+				
+				</h3>
 			</div>
 			<footer class="w3-col">
 				<div class="w3-col w3-purple w3-btn" id="cmbtn">확인</div>

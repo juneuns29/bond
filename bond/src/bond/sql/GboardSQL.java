@@ -4,6 +4,8 @@ public class GboardSQL {
 	public final int SEL_ALL_LIST 	= 1001;
 	public final int SEL_ID_CNT 	= 1002;
 	
+	public final int ADD_GBOARD 	= 3001;
+	
 	public String getSQL(int code) {
 		StringBuffer buff = new StringBuffer();
 		switch(code) {
@@ -26,6 +28,21 @@ public class GboardSQL {
 			buff.append("WHERE ");
 			buff.append("    mno = writer ");
 			buff.append("    AND id = ? ");
+			break;
+		case ADD_GBOARD:
+			buff.append("INSERT INTO ");
+			buff.append("    gboard(gno, writer, body) ");
+			buff.append("VALUES( ");
+			buff.append("    gbrdSeq.NEXTVAL, ");
+			buff.append("    ( ");
+		    buff.append("		SELECT ");
+			buff.append("    	    mno ");
+			buff.append("    	FROM ");
+			buff.append("    	    member ");
+			buff.append("    	WHERE ");
+			buff.append("    	    id = ? ");
+			buff.append("    ), ? ");
+			buff.append(") ");
 			break;
 		}
 		
