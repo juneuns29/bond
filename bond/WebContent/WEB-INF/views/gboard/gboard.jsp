@@ -15,6 +15,13 @@
 	hr {
 		margin: 3px!important;
 	}
+	
+	#wmodal {
+		display: none;
+	}
+	#msg {
+		display: block;
+	}
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -35,7 +42,36 @@
 		});
 		
 		$('#wbtn').click(function(){
-			alert('때가되면 합니다...!');
+			$('#wmodal').css('display', 'block');
+		});
+		
+		$('#close, #cbtn').click(function(){
+			document.frm.reset();
+			$('#wmodal').css('display', 'none');
+		});
+		
+		$('#mclose, #cmbtn').click(function(){
+			$('#msg').css('display', 'none');
+		});
+		
+		$('#write').click(function(){
+			// 데이터 유효성 검사
+			var sid = $(document.frm.id).val();
+			if(!sid || sid == 'null'){
+				// 로그인이 안되어있는 경우
+				// 로그인 페이지로 보낸다.
+				$(location).attr('href', '/member/login.bnd');
+			}
+			
+			// 입력 메세지 읽고
+			var body = $('#body').val();
+			if(!body){
+				// 내용 입력이 안된경우
+				alert('내용이 입력이 안됬습니다.');
+				$('#body').focus();
+			}
+			
+			$('#frm').submit();
 		});
 	});
 </script>
@@ -80,22 +116,40 @@
 		</div>
 	</div>
 	
-	<div id="id01" class="w3-col w3-modal1">
-		<div class="w3-modal-content mxw600">
+	<div id="wmodal" class="w3-modal">
+		<form method="POST" action="/gboard/gWriteProc.bnd" name="frm" id="frm" 
+													class="w3-modal-content mxw550" >
+			<input type="hidden" name="id" value="${SID}">
 			<header class="w3-container w3-blue"> 
-				<span onclick="document.getElementById('id01').style.display='none'" 
-				class="w3-btn w3-display-topright">&times;</span>
-				<h2>Modal Header</h2>
+				<span class="w3-btn w3-display-topright" id="close">&times;</span>
+				<h2>Bond 방명록 작성</h2>
 			</header>
-			<div class="w3-container">
-				<p>Some text..</p>
-				<p>Some text..</p>
+			<div class="w3-container w3-padding">
+				<textarea name="body" id="body" class="w3-input w3-border" 
+							style="resize: none;" placeholder="인사글을 작성하세요!"></textarea>
 			</div>
-			<footer class="w3-container">
-				<p>Modal Footer</p>
+			<footer class="w3-col">
+				<div class="w3-half w3-purple w3-btn" id="cbtn">취소</div>
+				<div class="w3-half w3-blue w3-btn" id="write">등록</div>
+			</footer>
+		</form>
+	</div>
+
+<c:if test="${empty MSG}">
+	<div id="msg" class="w3-modal">
+		<div class="w3-modal-content mxw550" >
+			<header class="w3-container w3-blue"> 
+				<span class="w3-btn w3-display-topright" id="mclose">&times;</span>
+				<h2>Bond 방명록 등록 결과</h2>
+			</header>
+			<div class="w3-container w3-padding">
+				<h3 class="w3-center">${MSG} - 등록에 성공했습니다.</h3>
+			</div>
+			<footer class="w3-col">
+				<div class="w3-col w3-purple w3-btn" id="cmbtn">확인</div>
 			</footer>
 		</div>
 	</div>
-	
+</c:if>
 </body>
 </html>
